@@ -6,14 +6,12 @@ const createCategory = async (name) => {
     return category;
 };
 
-// const getCategories = async () => {
-//     const users = await User.findAll();
-//     const filteredUsers = users
-//     .map(({ id, displayName, email, image }) => ({ id, displayName, email, image }));
-//     return filteredUsers;
-// };
+const getCategories = async () => {
+    const categories = await Category.findAll();
+    return categories;
+};
 
 module.exports = {
     createCategory,
-    // getCategories,
+    getCategories,
 };

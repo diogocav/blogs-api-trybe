@@ -31,8 +31,6 @@ const getUsers = async () => {
     return filteredUsers;
 };
 
-// const getByUsername = (username) => User.findOne({ where: { username } });
-
 const getByUserId = async (userId) => {
     const user = await User.findByPk(userId);
     if (!user) throw new Error('User does not exist');
@@ -44,6 +42,5 @@ const getByUserId = async (userId) => {
 module.exports = {
   createUser,
   getUsers,
-//   getByUsername,
   getByUserId,
 };

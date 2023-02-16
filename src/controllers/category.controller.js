@@ -6,13 +6,12 @@ const createCategory = async (req, res) => {
     res.status(201).json(category);
   };
 
-// const getCategories = async (req, res) => {
-//     const users = await userService.getUsers();
-//     if (!users) throw new Error('Internal Server Error');
-//     res.status(200).json(users);
-// };
+const getCategories = async (_req, res) => {
+    const categories = await categoryService.getCategories();
+    res.status(200).json(categories);
+};
 
 module.exports = {
     createCategory,
-    // getCategories,
+    getCategories,
 };
