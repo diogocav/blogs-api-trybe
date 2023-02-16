@@ -1,4 +1,4 @@
-module.exports = async (req, res, next) => {
+module.exports = async (req, _res, next) => {
     const { email, password } = req.body;
   
     if (!email || !password) {
