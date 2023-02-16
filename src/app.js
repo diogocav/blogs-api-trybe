@@ -1,10 +1,17 @@
 const express = require('express');
-
-// ..
+const errorHandler = require('./middlewares/errorHandler');
+const { loginRouter } = require('./routers');
 
 const app = express();
 
 app.use(express.json());
+
+app.use('/login', loginRouter);
+// app.use('/user', productsRouter);
+// app.use('/categories', productsRouter);
+// app.use('/post', productsRouter);
+
+app.use(errorHandler);
 
 // ...
 
