@@ -1,4 +1,3 @@
-require('dotenv/config');
 const { Category } = require('../models');
 
 const createCategory = async (name) => {

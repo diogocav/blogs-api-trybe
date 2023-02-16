@@ -11,20 +11,23 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
         content: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           allowNull: false,
         },
         userId: {
           type: DataTypes.INTEGER,
           allowNull: false,
+          foreignKey: true,
         },
         published: {
           type: DataTypes.DATE,
           allowNull: false,
+          defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
         updated: {
           type: DataTypes.DATE,
           allowNull: false,
+          defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
       },
       {
