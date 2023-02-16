@@ -24,7 +24,12 @@ const createUser = async ({ displayName, email, password, image }) => {
     return token;
 };
 
-// const getUsers = () => User.findAll();
+const getUsers = async () => {
+    const users = await User.findAll();
+    const filteredUsers = users
+    .map(({ id, displayName, email, image }) => ({ id, displayName, email, image }));
+    return filteredUsers;
+};
 
 // const getByUsername = (username) => User.findOne({ where: { username } });
 
@@ -32,7 +37,7 @@ const createUser = async ({ displayName, email, password, image }) => {
 
 module.exports = {
   createUser,
-//   getUsers,
+  getUsers,
 //   getByUsername,
 //   getByUserId,
 };

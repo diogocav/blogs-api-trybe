@@ -11,8 +11,6 @@ app.use('/user', userRouter);
 // app.use('/categories', productsRouter);
 // app.use('/post', productsRouter);
 
-// app.use(errorHandler);
-
 // ...
 
 // É importante exportar a constante `app`,
