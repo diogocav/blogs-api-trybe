@@ -1,4 +1,4 @@
-module.exports = async (err, _req, res, _next) => {
+const createUser = async (err, _req, res, next) => {
     switch (err.message) {
         case '"displayName" length must be at least 8 characters long':
           res.status(400)
@@ -14,6 +14,22 @@ module.exports = async (err, _req, res, _next) => {
           res.status(409).send({ message: 'User already registered' });
           break;
         default:
-          res.status(500).send('Internal Server Error');
+          next(err);
       }
+    };
+
+const findUserById = async (err, _req, res, _next) => {
+    switch (err.message) {
+        case 'User does not exist':
+          res.status(404)
+          .send({ message: 'User does not exist' });
+          break;
+        default:
+          res.status(500).send({ message: err.message });
+      }
+    };
+
+module.exports = {
+    createUser,
+    findUserById,
 };

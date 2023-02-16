@@ -33,11 +33,17 @@ const getUsers = async () => {
 
 // const getByUsername = (username) => User.findOne({ where: { username } });
 
-// const getByUserId = (userId) => User.findByPk(userId);
+const getByUserId = async (userId) => {
+    const user = await User.findByPk(userId);
+    if (!user) throw new Error('User does not exist');
+    const { id, displayName, email, image } = user;
+    const filteredUsers = { id, displayName, email, image };
+    return filteredUsers;
+};
 
 module.exports = {
   createUser,
   getUsers,
 //   getByUsername,
-//   getByUserId,
+  getByUserId,
 };

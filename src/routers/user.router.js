@@ -18,6 +18,13 @@ router.get(
   userController.getUsers,
 );
 
-router.use(errorHandler);
+router.get(
+  '/:id',
+  validateJWT,
+  userController.getUserById,
+);
+
+router.use(errorHandler.createUser);
+router.use(errorHandler.findUserById);
 
 module.exports = router;
