@@ -24,6 +24,12 @@ router.get(
   userController.getUserById,
 );
 
+router.delete(
+  '/me',
+  validateJWT,
+  userController.deleteUser,
+);
+
 router.use(errorHandler.createUser);
 router.use(errorHandler.findUserById);
 
