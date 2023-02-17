@@ -20,6 +20,10 @@ const findPostById = async (err, _req, res, _next) => {
           res.status(404)
           .send({ message: 'Post does not exist' });
           break;
+        case 'Unauthorized user':
+          res.status(401)
+          .send({ message: 'Unauthorized user' });
+          break;
         default:
           res.status(500).send({ message: err.message });
       }

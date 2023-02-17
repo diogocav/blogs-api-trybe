@@ -3,6 +3,8 @@ const { postController } = require('../controllers');
 const validatePostFields = require('../middlewares/validatePostFields');
 const errorHandler = require('../middlewares/postErrorHandler');
 const validateJWT = require('../middlewares/validateJWT');
+const validateUpdatePostFields = require('../middlewares/validateUpdatePostFields');
+const validateUserUpdatePost = require('../middlewares/validateUserUpdatePost');
 
 require('express-async-errors');
 
@@ -25,6 +27,14 @@ router.get(
   '/:id',
   validateJWT,
   postController.getPostById,
+);
+
+router.put(
+  '/:id',
+  validateJWT,
+  validateUpdatePostFields,
+  validateUserUpdatePost,
+  postController.updatePostById,
 );
 
 router.use(errorHandler.createPost);
