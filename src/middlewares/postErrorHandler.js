@@ -1,4 +1,4 @@
-const createPost = async (err, _req, res, _next) => {
+const createPost = async (err, _req, res, next) => {
     switch (err.message) {
         case 'Some required fields are missing':
           res.status(400)
@@ -10,23 +10,22 @@ const createPost = async (err, _req, res, _next) => {
           break;
 
         default:
-            res.status(500).send({ message: err.message });
-        //   next(err);
+          next(err);
       }
     };
 
-// const findUserById = async (err, _req, res, _next) => {
-//     switch (err.message) {
-//         case 'User does not exist':
-//           res.status(404)
-//           .send({ message: 'User does not exist' });
-//           break;
-//         default:
-//           res.status(500).send({ message: err.message });
-//       }
-//     };
+const findPostById = async (err, _req, res, _next) => {
+    switch (err.message) {
+        case 'Post does not exist':
+          res.status(404)
+          .send({ message: 'Post does not exist' });
+          break;
+        default:
+          res.status(500).send({ message: err.message });
+      }
+    };
 
 module.exports = {
     createPost,
-    // findUserById,
+    findPostById,
 };

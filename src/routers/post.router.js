@@ -21,6 +21,13 @@ router.get(
   postController.getPosts,
 );
 
+router.get(
+  '/:id',
+  validateJWT,
+  postController.getPostById,
+);
+
 router.use(errorHandler.createPost);
+router.use(errorHandler.findPostById);
 
 module.exports = router;
