@@ -1,5 +1,3 @@
-// const { categoryService } = require('../services');
-
 const { postService } = require('../services');
 
 const createPost = async (req, res) => {
@@ -9,12 +7,12 @@ const createPost = async (req, res) => {
     res.status(201).json(post);
   };
 
-// const getCategories = async (_req, res) => {
-//     const categories = await categoryService.getCategories();
-//     res.status(200).json(categories);
-// };
+const getPosts = async (_req, res) => {
+    const posts = await postService.getPosts();
+    res.status(200).json(posts);
+};
 
 module.exports = {
     createPost,
-    // getCategories,
+    getPosts,
 };

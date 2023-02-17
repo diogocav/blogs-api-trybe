@@ -1,6 +1,7 @@
 const { BlogPost } = require('../models');
 const { Category } = require('../models');
 const { PostCategory } = require('../models');
+const { User } = require('../models');
 
 const createPost = async ({ id, title, content, categoryIds }) => {
   const categories = await Category.findAll({
@@ -25,12 +26,34 @@ const createPost = async ({ id, title, content, categoryIds }) => {
       published: post.published.val };
 };
 
-// const getCategories = async () => {
-//     const categories = await Category.findAll();
-//     return categories;
-// };
+const filterPosts = (posts) => posts.map((post) => ({
+        id: post.id,
+        title: post.title,
+        content: post.content,
+        userId: post.userId,
+        published: post.published,
+        updated: post.updated,
+        user: {
+          id: post.user.id,
+          displayName: post.user.displayName,
+          email: post.user.email,
+          image: post.user.image,
+        },
+        categories: post.categories,
+      }));
+
+const getPosts = async () => {
+    const posts = await BlogPost.findAll({
+        include: [
+            { model: User, as: 'user' },
+            { model: Category, as: 'categories', through: { attributes: [] } },
+        ],
+    });
+    const postsFiltered = filterPosts(posts);
+    return postsFiltered;
+};
 
 module.exports = {
     createPost,
-    // getCategories,
+    getPosts,
 };

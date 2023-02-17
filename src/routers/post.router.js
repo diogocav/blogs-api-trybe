@@ -15,11 +15,11 @@ router.post(
   postController.createPost,
 );
 
-// router.get(
-//   '/',
-//   validateJWT,
-//   categoryController.getCategories,
-// );
+router.get(
+  '/',
+  validateJWT,
+  postController.getPosts,
+);
 
 router.use(errorHandler.createPost);
 
