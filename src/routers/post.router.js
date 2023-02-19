@@ -10,6 +10,12 @@ require('express-async-errors');
 
 const router = express.Router();
 
+router.get(
+  '/search',
+  validateJWT,
+  postController.getSearchedPosts,
+);
+
 router.post(
   '/',
   validateJWT,
